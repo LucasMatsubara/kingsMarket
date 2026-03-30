@@ -1,12 +1,11 @@
 package com.kingsMarket.KingsMarket.service;
 
-import com.kingsMarket.KingsMarket.model.DesenvolvedoraModel;
 import com.kingsMarket.KingsMarket.model.JogoModel;
-import com.kingsMarket.KingsMarket.repository.DesenvolvedoraRepository;
+import com.kingsMarket.KingsMarket.model.DesenvolvedoraModel;
 import com.kingsMarket.KingsMarket.repository.JogoRepository;
+import com.kingsMarket.KingsMarket.repository.DesenvolvedoraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +15,6 @@ public class JogoService {
     @Autowired
     private JogoRepository repository;
 
-    // 1. Adicionamos o repositório da Desenvolvedora aqui
     @Autowired
     private DesenvolvedoraRepository desenvolvedoraRepository;
 
@@ -32,15 +30,11 @@ public class JogoService {
         return repository.findByDesenvolvedoraId(id);
     }
 
-    // 2. Arrumamos o método salvar
     public JogoModel salvar(JogoModel jogo) {
         if (jogo.getDesenvolvedora() != null && jogo.getDesenvolvedora().getId() != null) {
-            // Busca a desenvolvedora completa no banco Oracle antes de salvar
-            DesenvolvedoraModel devCompleta = desenvolvedoraRepository.findById(jogo.getDesenvolvedora().getId())
-                    .orElseThrow(() -> new RuntimeException("Desenvolvedora não encontrada com este ID"));
-
-            // Preenche o jogo com os dados completos
-            jogo.setDesenvolvedora(devCompleta);
+            DesenvolvedoraModel dev = desenvolvedoraRepository.findById(jogo.getDesenvolvedora().getId())
+                    .orElseThrow(() -> new RuntimeException("Desenvolvedora não encontrada"));
+            jogo.setDesenvolvedora(dev);
         }
         return repository.save(jogo);
     }

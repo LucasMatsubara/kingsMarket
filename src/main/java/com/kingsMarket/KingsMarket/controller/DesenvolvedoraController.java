@@ -15,12 +15,17 @@ public class DesenvolvedoraController {
     @Autowired
     private DesenvolvedoraService service;
 
+    @GetMapping("/health")
+    public String health() {
+        return "Sistema KingsMarket Online!";
+    }
 
     @GetMapping
     public List<DesenvolvedoraModel> listar() {
         return service.listarTodas();
     }
 
+    // BUSCAR POR ID (Novo)
     @GetMapping("/{id}")
     public ResponseEntity<DesenvolvedoraModel> buscarPorId(@PathVariable Long id) {
         return service.buscarPorId(id)
@@ -29,10 +34,11 @@ public class DesenvolvedoraController {
     }
 
     @PostMapping
-    public DesenvolvedoraModel criar(@RequestBody DesenvolvedoraModel desenvolvedora) {
-        return service.salvar(desenvolvedora);
+    public DesenvolvedoraModel criar(@RequestBody DesenvolvedoraModel dev) {
+        return service.salvar(dev);
     }
 
+    // EDITAR (O mÃ©todo PUT que estava faltando!)
     @PutMapping("/{id}")
     public ResponseEntity<DesenvolvedoraModel> atualizar(@PathVariable Long id, @RequestBody DesenvolvedoraModel dadosAtualizados) {
         return service.buscarPorId(id).map(desenvolvedora -> {

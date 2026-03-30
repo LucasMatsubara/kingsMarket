@@ -16,7 +16,7 @@ public class JogoController {
     private JogoService service;
 
     @GetMapping
-    public List<JogoModel> listar() {
+    public List<JogoModel> listarTodos() {
         return service.listarTodos();
     }
 
@@ -25,6 +25,11 @@ public class JogoController {
         return service.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/desenvolvedora/{id}")
+    public List<JogoModel> listarPorDesenvolvedora(@PathVariable Long id) {
+        return service.buscarPorDesenvolvedora(id);
     }
 
     @PostMapping
