@@ -43,7 +43,7 @@ O sistema segue o padrão de camadas para garantir a manutenção e escalabilida
     ```
 
 ---
-Desenvolvido por: 
-👤 João Pedro Pereira Camilo | RM 562005
-👤 Lucas Matsubara Reis | RM 565020
-👤 Pamella Christiny Chaves Brito | RM 565206
+## Desenvolvido por: 
+### 👤 João Pedro Pereira Camilo | RM 562005
+### 👤 Lucas Matsubara Reis | RM 565020
+### 👤 Pamella Christiny Chaves Brito | RM 565206
